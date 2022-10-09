@@ -35,21 +35,41 @@ class TheMovieDatabaseApi:
         params = {'api_key': self.api_key, 'language': self.language}
         return await self.get(url=url, params=params)
 
-    async def get_top_rating(self, page: int = 1, region: str = None) -> dict | None:
+    async def get_top_rating(
+        self, page: int = 1, region: str = None
+    ) -> dict | None:
         """Получите фильмы с самым высоким рейтингом"""
-        url = self.url + f'/movie/top_rated'
+        url = self.url + '/movie/top_rated'
         params = {
             'api_key': self.api_key,
             'language': self.language,
             'page': page,
-            'region': region
         }
+        if region:
+            params['region'] = region
+        return await self.get(url=url, params=params)
+
+    async def get_popular(
+        self, page: int = 1, region: str = None
+    ) -> dict | None:
+        """
+        Получите список текущих популярных фильмов.
+        Этот список обновляется ежедневно.
+        """
+        url = self.url + '/movie/popular'
+        params = {
+            'api_key': self.api_key,
+            'language': self.language,
+            'page': page
+        }
+        if region:
+            params['region'] = region
         return await self.get(url=url, params=params)
 
 
 async def main():
     client = TheMovieDatabaseApi('04d75758a71fdfab2b612a1154cda34f')
-    a = await client.get_top_rating(region='UA')
+    a = await client.get_popular()
     print(a)
 
 asyncio.run(main())

@@ -8,6 +8,7 @@ packages = [{include = "service_movie"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+httpx = "^0.23.0"
 
 
 [build-system]

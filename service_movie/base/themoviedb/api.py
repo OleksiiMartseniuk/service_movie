@@ -1,6 +1,5 @@
 import httpx
 import logging
-import asyncio
 
 
 logger = logging.getLogger(__name__)
@@ -66,10 +65,16 @@ class TheMovieDatabaseApi:
             params['region'] = region
         return await self.get(url=url, params=params)
 
-
-async def main():
-    client = TheMovieDatabaseApi('04d75758a71fdfab2b612a1154cda34f')
-    a = await client.get_popular()
-    print(a)
-
-asyncio.run(main())
+    async def get_upcoming(
+        self, page: int = 1, region: str = None
+    ) -> dict | None:
+        """Получить список предстоящих фильмов в кинотеатрах."""
+        url = self.url + '/movie/upcoming'
+        params = {
+            'api_key': self.api_key,
+            'language': self.language,
+            'page': page
+        }
+        if region:
+            params['region'] = region
+        return await self.get(url=url, params=params)

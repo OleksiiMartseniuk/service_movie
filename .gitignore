@@ -1,0 +1,7 @@
+.idea
+venv
+.env
+media/*
+!.gitignore
+__pycache__
+.vscode

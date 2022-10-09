@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "service-movie"
+version = "0.1.0"
+description = ""
+authors = ["Oleksii Martseniuk <martsenyk.l@gmail.com>"]
+readme = "README.md"
+packages = [{include = "service_movie"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

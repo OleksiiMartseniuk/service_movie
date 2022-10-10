@@ -28,10 +28,21 @@ class TheMovieDatabaseApi:
             except httpx.RequestError as exc:
                 logger.error(f'{exc.__class__}-{str(exc)}')
 
+    async def _set_params(self, **kwargs) -> dict:
+        """Формирования параметров"""
+        params_default = {
+            'api_key': self.api_key,
+            'language': self.language,
+        }
+        if kwargs:
+            params = {key: value for key, value in kwargs.items() if value}
+            params_default.update(params)
+        return params_default
+
     async def get_details(self, movie_id: int) -> dict | None:
         """Получить первичную информацию о фильме"""
         url = self.url + f'/movie/{movie_id}'
-        params = {'api_key': self.api_key, 'language': self.language}
+        params = await self._set_params()
         return await self.get(url=url, params=params)
 
     async def get_top_rating(
@@ -39,13 +50,7 @@ class TheMovieDatabaseApi:
     ) -> dict | None:
         """Получите фильмы с самым высоким рейтингом"""
         url = self.url + '/movie/top_rated'
-        params = {
-            'api_key': self.api_key,
-            'language': self.language,
-            'page': page,
-        }
-        if region:
-            params['region'] = region
+        params = await self._set_params(page=page, region=region)
         return await self.get(url=url, params=params)
 
     async def get_popular(
@@ -56,13 +61,7 @@ class TheMovieDatabaseApi:
         Этот список обновляется ежедневно.
         """
         url = self.url + '/movie/popular'
-        params = {
-            'api_key': self.api_key,
-            'language': self.language,
-            'page': page
-        }
-        if region:
-            params['region'] = region
+        params = await self._set_params(page=page, region=region)
         return await self.get(url=url, params=params)
 
     async def get_upcoming(
@@ -70,11 +69,5 @@ class TheMovieDatabaseApi:
     ) -> dict | None:
         """Получить список предстоящих фильмов в кинотеатрах."""
         url = self.url + '/movie/upcoming'
-        params = {
-            'api_key': self.api_key,
-            'language': self.language,
-            'page': page
-        }
-        if region:
-            params['region'] = region
+        params = await self._set_params(page=page, region=region)
         return await self.get(url=url, params=params)

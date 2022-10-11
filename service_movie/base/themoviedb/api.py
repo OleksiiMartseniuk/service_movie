@@ -39,6 +39,17 @@ class TheMovieDatabaseApi:
             params_default.update(params)
         return params_default
 
+    async def get_genres(self, tv: bool = False) -> dict | None:
+        """
+        Получите список официальных жанров фильмов/сериалов.
+        Default [получения жанров фильмов]
+        tv = True [получения жанров сериалов]
+        """
+        path = '/genre/tv/list' if tv else '/genre/movie/list'
+        url = self.url + path
+        params = await self._set_params()
+        return await self.get(url=url, params=params)
+
     async def get_details(self, movie_id: int) -> dict | None:
         """Получить первичную информацию о фильме"""
         url = self.url + f'/movie/{movie_id}'

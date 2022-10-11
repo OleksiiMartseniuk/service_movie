@@ -50,9 +50,16 @@ class TheMovieDatabaseApi:
         params = await self._set_params()
         return await self.get(url=url, params=params)
 
-    async def get_details_movie(self, movie_id: int) -> dict | None:
-        """Получить первичную информацию о фильме"""
-        url = self.url + f'/movie/{movie_id}'
+    async def get_details(
+        self, id: int, tv: bool = False
+    ) -> dict | None:
+        """
+        Получить первичную информацию о фильме/сериалов
+        Default [получения информацию о фильме]
+        tv = True [получения информацию о сериалов]
+        """
+        path = f'/tv/{id}' if tv else f'/movie/{id}'
+        url = self.url + path
         params = await self._set_params()
         return await self.get(url=url, params=params)
 

@@ -50,13 +50,13 @@ class TheMovieDatabaseApi:
         params = await self._set_params()
         return await self.get(url=url, params=params)
 
-    async def get_details(self, movie_id: int) -> dict | None:
+    async def get_details_movie(self, movie_id: int) -> dict | None:
         """Получить первичную информацию о фильме"""
         url = self.url + f'/movie/{movie_id}'
         params = await self._set_params()
         return await self.get(url=url, params=params)
 
-    async def get_top_rating(
+    async def get_top_rating_movie(
         self, page: int = 1, region: str = None
     ) -> dict | None:
         """Получите фильмы с самым высоким рейтингом"""
@@ -64,7 +64,7 @@ class TheMovieDatabaseApi:
         params = await self._set_params(page=page, region=region)
         return await self.get(url=url, params=params)
 
-    async def get_popular(
+    async def get_popular_movie(
         self, page: int = 1, region: str = None
     ) -> dict | None:
         """
@@ -75,7 +75,7 @@ class TheMovieDatabaseApi:
         params = await self._set_params(page=page, region=region)
         return await self.get(url=url, params=params)
 
-    async def get_upcoming(
+    async def get_upcoming_movie(
         self, page: int = 1, region: str = None
     ) -> dict | None:
         """Получить список предстоящих фильмов в кинотеатрах."""

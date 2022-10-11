@@ -1,25 +1,22 @@
 import logging
 
-from pydantic import ValidationError
+from typing import TypeVar, Type
 
-from .schemas import Genre
+from pydantic import BaseModel, ValidationError
 
 
 logger = logging.getLogger(__name__)
+ModelSchemaType = TypeVar('ModelSchemaType', bound=BaseModel)
 
 
-def get_genres_schemas(data: dict) -> list[Genre] | None:
-    """Получения списка схемы Genre"""
+def get_schemas(
+    data: dict,
+    schema_model: Type[ModelSchemaType]
+) -> ModelSchemaType | None:
+    """Получения схемы"""
     try:
-        genres: list = data['genres']
-    except KeyError:
-        logger.error('Нет данных')
-        return None
-
-    try:
-        genres_schema = [Genre(**genre) for genre in genres]
+        result = schema_model(**data)
     except ValidationError as exc:
-        logger.error(f'{exc.__class__}-{str(exc)}')
+        logger.error(f'{exc.__class__} {str(exc)}')
         return None
-
-    return genres_schema
+    return result

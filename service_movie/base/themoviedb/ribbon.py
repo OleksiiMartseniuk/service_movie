@@ -1,7 +1,7 @@
 import logging
 
 from .src.api import TheMovieDatabaseApi
-from .src.validation import get_schemas
+from .src.validation import get_schemas_list
 from .src import schemas
 
 
@@ -30,12 +30,7 @@ class MovieApi:
             logger.error('Нет ключа [genres]')
             return None
 
-        result = []
-        for genre in genres:
-            item = get_schemas(genre, schemas.Genre)
-            if item:
-                result.append(item)
-        return result
+        return get_schemas_list(genres, schemas.Genre)
 
     async def _get_count_page(
         self, action: int, region: str = 'RU'

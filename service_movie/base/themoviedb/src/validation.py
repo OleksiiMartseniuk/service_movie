@@ -20,3 +20,16 @@ def get_schemas(
         logger.error(f'{exc.__class__} {str(exc)}')
         return None
     return result
+
+
+def get_schemas_list(
+    data: list[dict],
+    schema_model: Type[ModelSchemaType]
+) -> list[ModelSchemaType | None]:
+    """Получения списка схем"""
+    result_list = []
+    for item in data:
+        item_schema = get_schemas(item, schema_model)
+        if item_schema:
+            result_list.append(item)
+    return result_list

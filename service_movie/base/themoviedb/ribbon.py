@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class ActionEnum(Enum):
     """
     Перечисление actions
-
+    ---
     TOP_RATING_MOVIE: Фильмы с самым высоким рейтингом
     POPULAR_MOVIE: Список текущих популярных фильмов
     UPCOMING_MOVIE: Список предстоящих фильмов в кинотеатрах
@@ -96,3 +96,26 @@ class MovieApi:
             logger.error('Нет ключа [total_pages]')
             return None
         return count
+
+    async def get_data(
+        self, item: ActionEnum, region: str = None
+    ) -> list[BaseModel | None] | None:
+        """Получения списка данных фильмов/TV"""
+        count = await self.get_count_page(item=item, region=region)
+
+        if not count:
+            logger.error('Нет данных о количеству страниц')
+            return None
+
+        func = self.__get_link_method(item=item)
+
+        if not func:
+            return None
+
+        tasks = []
+        for page in range(1, count + 1):
+            task = asyncio.create_task(func(page=page, region=region))
+            tasks.append(task)
+        data_list = await asyncio.gather(*tasks)
+
+        return get_schemas_list(data_list,  item.schema)

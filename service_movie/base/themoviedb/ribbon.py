@@ -31,21 +31,21 @@ class MovieApi:
     def __init__(self, token: str) -> None:
         self.client = TheMovieDatabaseApi(api_key=token)
 
-    def __get_link_method(self, action: ActionEnum):
+    def __get_link_method(self, item: ActionEnum):
         """Получить ссылку на функцию"""
-        match action.action:
-            case 'TopRatingMovie':
+        match item.action:
+            case 'top_rating_movie':
                 func = self.client.get_top_rating_movie
-            case 'PopularMovie':
+            case 'popular_movie':
                 func = self.client.get_popular_movie
-            case 'UpcomingMovie':
+            case 'upcoming_movie':
                 func = self.client.get_upcoming_movie
-            case 'TopRatingTV':
+            case 'top_rating_tv':
                 func = self.client.get_top_rating_tv
-            case 'PopularTV':
+            case 'popular_tv':
                 func = self.client.get_popular_tv
             case _:
-                logger.error(f'Неверный action[{action}]')
+                logger.error(f'Неверный action[{item}]')
                 return None
         return func
 
@@ -68,10 +68,10 @@ class MovieApi:
         return get_schemas_list(genres, schemas.Genre)
 
     async def get_count_page(
-        self, action: ActionEnum, region: str = None
+        self, item: ActionEnum, region: str = None
     ) -> int | None:
         """Получения количества страниц"""
-        func = self.__get_link_method(action=action)
+        func = self.__get_link_method(item=item)
 
         if not func:
             return None

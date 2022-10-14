@@ -12,7 +12,7 @@ ModelSchemaType = TypeVar('ModelSchemaType', bound=BaseModel)
 def get_schemas(
     data: dict,
     schema_model: Type[ModelSchemaType]
-) -> ModelSchemaType | None:
+) -> BaseModel | None:
     """Получения схемы"""
     try:
         result = schema_model(**data)
@@ -25,11 +25,11 @@ def get_schemas(
 def get_schemas_list(
     data: list[dict],
     schema_model: Type[ModelSchemaType]
-) -> list[ModelSchemaType | None]:
+) -> list[BaseModel | None]:
     """Получения списка схем"""
     result_list = []
     for item in data:
         item_schema = get_schemas(item, schema_model)
         if item_schema:
-            result_list.append(item)
+            result_list.append(item_schema)
     return result_list

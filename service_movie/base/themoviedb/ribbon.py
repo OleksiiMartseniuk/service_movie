@@ -2,6 +2,7 @@ import logging
 import asyncio
 
 from enum import Enum
+from pydantic import BaseModel
 
 from .src.api import TheMovieDatabaseApi
 from .src.validation import get_schemas_list
@@ -13,11 +14,15 @@ logger = logging.getLogger(__name__)
 
 class ActionEnum(Enum):
     """Перечисление actions"""
-    top_rating_movie = 'TopRatingMovie'
-    popular_movie = 'PopularMovie'
-    upcoming_movie = 'UpcomingMovie'
-    top_rating_tv = 'TopRatingTV'
-    popular_tv = 'PopularTV'
+    TOP_RATING_MOVIE = ('top_rating_movie', schemas.TopRatingMovie)
+    POPULAR_MOVIE = ('popular_movie', schemas.PopularMovie)
+    UPCOMING_MOVIE = ('upcoming_movie', schemas.UpcomingMovie)
+    TOP_RATING_TV = ('top_rating_tv', schemas.TopRatedTV)
+    POPULAR_TV = ('popular_tv', schemas.PopularTV)
+
+    def __init__(self, action: str, schema: BaseModel) -> None:
+        self.action = action
+        self.schema = schema
 
 
 class MovieApi:
@@ -28,7 +33,7 @@ class MovieApi:
 
     def __get_link_method(self, action: ActionEnum):
         """Получить ссылку на функцию"""
-        match action.value:
+        match action.action:
             case 'TopRatingMovie':
                 func = self.client.get_top_rating_movie
             case 'PopularMovie':
@@ -63,7 +68,7 @@ class MovieApi:
         return get_schemas_list(genres, schemas.Genre)
 
     async def get_count_page(
-        self, action: ActionEnum, region: str = 'RU'
+        self, action: ActionEnum, region: str = None
     ) -> int | None:
         """Получения количества страниц"""
         func = self.__get_link_method(action=action)

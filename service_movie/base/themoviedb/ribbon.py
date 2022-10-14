@@ -13,7 +13,15 @@ logger = logging.getLogger(__name__)
 
 
 class ActionEnum(Enum):
-    """Перечисление actions"""
+    """
+    Перечисление actions
+
+    TOP_RATING_MOVIE: Фильмы с самым высоким рейтингом
+    POPULAR_MOVIE: Список текущих популярных фильмов
+    UPCOMING_MOVIE: Список предстоящих фильмов в кинотеатрах
+    TOP_RATING_TV: Телешоу с самым высоким рейтингом
+    POPULAR_TV: Список текущих популярных телешоу
+    """
     TOP_RATING_MOVIE = ('top_rating_movie', schemas.TopRatingMovie)
     POPULAR_MOVIE = ('popular_movie', schemas.PopularMovie)
     UPCOMING_MOVIE = ('upcoming_movie', schemas.UpcomingMovie)

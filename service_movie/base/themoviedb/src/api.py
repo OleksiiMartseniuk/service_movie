@@ -90,13 +90,13 @@ class TheMovieDatabaseApi:
         params = await self._set_params(page=page, region=region)
         return await self.get(url=url, params=params)
 
-    async def get_top_rating_tv(self, page: int = 1):
+    async def get_top_rating_tv(self, page: int = 1, **kwargs):
         """Получите список телешоу с самым высоким рейтингом"""
         url = self.url + '/tv/top_rated'
         params = await self._set_params(page=page)
         return await self.get(url=url, params=params)
 
-    async def get_popular_tv(self, page: int = 1):
+    async def get_popular_tv(self, page: int = 1, **kwargs):
         """
         Получите список текущих популярных телешоу.
         Этот список обновляется ежедневно.

@@ -1,5 +1,6 @@
 import httpx
 import logging
+import asyncio
 
 
 logger = logging.getLogger(__name__)
@@ -13,20 +14,26 @@ class TheMovieDatabaseApi:
         api_key: str,
         url: str = "https://api.themoviedb.org/",
         version: int = 3,
-        language: str = 'ru-Ru'
+        language: str = 'ru-Ru',
+        response_count: int = 10
     ) -> None:
         self.url = url + str(version)
         self.api_key = api_key
         self.language = language
+        self.limit = asyncio.Semaphore(response_count)
 
     async def get(self, url: str, **kwargs) -> dict | None:
-        async with httpx.AsyncClient() as client:
-            try:
-                response = await client.get(url=url, **kwargs)
-                if response.status_code == 200:
-                    return response.json()
-            except httpx.RequestError as exc:
-                logger.error(f'{exc.__class__}-{str(exc)}')
+        async with self.limit:
+            async with httpx.AsyncClient() as client:
+                try:
+                    response = await client.get(url=url, **kwargs)
+                    if response.status_code == 200:
+                        return response.json()
+                    else:
+                        logger.error(f'status_code [{response.status_code}] '
+                                     f'error_message [{response.json()}]')
+                except httpx.RequestError as exc:
+                    logger.error(f'{exc.__class__}-{str(exc)}')
 
     async def _set_params(self, **kwargs) -> dict:
         """Формирования параметров"""

@@ -36,8 +36,8 @@ class ActionEnum(Enum):
 class MovieApi:
     """Получения данных"""
 
-    def __init__(self, token: str) -> None:
-        self.client = TheMovieDatabaseApi(api_key=token)
+    def __init__(self, token: str, **kwargs) -> None:
+        self.client = TheMovieDatabaseApi(api_key=token, **kwargs)
 
     def __get_link_method(self, item: ActionEnum):
         """Получить ссылку на функцию"""
@@ -112,6 +112,7 @@ class MovieApi:
         if not func:
             return None
 
+        # Создания списка задач
         tasks = []
         for page in range(1, count + 1):
             task = asyncio.create_task(func(page=page, region=region))

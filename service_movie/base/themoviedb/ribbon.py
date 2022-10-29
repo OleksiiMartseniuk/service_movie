@@ -4,10 +4,9 @@ import asyncio
 from enum import Enum
 from pydantic import BaseModel
 
-from .src.api import TheMovieDatabaseApi
-from .src.validation import get_schemas_list
-from .src import schemas
-
+from .api import TheMovieDatabaseApi
+from .validation import get_schemas_list
+from . import schemas
 
 logger = logging.getLogger(__name__)
 

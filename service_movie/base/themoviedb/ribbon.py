@@ -5,7 +5,7 @@ from enum import Enum
 from pydantic import BaseModel
 
 from .api import TheMovieDatabaseApi
-from .validation import get_schemas_list, get_schemas
+from .validation import get_schemas
 from . import schemas
 
 
@@ -22,11 +22,11 @@ class ActionEnum(Enum):
     TOP_RATING_TV: Телешоу с самым высоким рейтингом
     POPULAR_TV: Список текущих популярных телешоу
     """
-    TOP_RATING_MOVIE = ('top_rating_movie', schemas.TopRatingMovie)
-    POPULAR_MOVIE = ('popular_movie', schemas.PopularMovie)
-    UPCOMING_MOVIE = ('upcoming_movie', schemas.UpcomingMovie)
-    TOP_RATING_TV = ('top_rating_tv', schemas.TopRatedTV)
-    POPULAR_TV = ('popular_tv', schemas.PopularTV)
+    TOP_RATING_MOVIE = ('top_rating_movie', schemas.TopRatingMovieList)
+    POPULAR_MOVIE = ('popular_movie', schemas.PopularMovieList)
+    UPCOMING_MOVIE = ('upcoming_movie', schemas.UpcomingMovieList)
+    TOP_RATING_TV = ('top_rating_tv', schemas.TopRatedTVList)
+    POPULAR_TV = ('popular_tv', schemas.PopularTVList)
 
     def __init__(self, action: str, schema: BaseModel) -> None:
         self.action = action
@@ -69,7 +69,7 @@ class MovieApi:
 
         return get_schemas(data, schemas.Genres)
 
-    async def get_count_page(
+    async def __get_count_page(
         self, item: ActionEnum, region: str = None
     ) -> int | None:
         """Получения количества страниц"""
@@ -89,14 +89,17 @@ class MovieApi:
         except KeyError:
             logger.error('Нет ключа [total_pages]')
             return None
+        # Ограничения количество страниц не больше 500
+        if count > 500:
+            count = 500
+
         return count
 
     async def get_data(
         self, item: ActionEnum, region: str = None
-    ) -> list[BaseModel | None] | None:
+    ) -> BaseModel | None:
         """Получения списка данных фильмов/TV"""
-        count = await self.get_count_page(item=item, region=region)
-
+        count = await self.__get_count_page(item=item, region=region)
         if not count:
             logger.error('Нет данных о количеству страниц')
             return None
@@ -112,5 +115,4 @@ class MovieApi:
             task = asyncio.create_task(func(page=page, region=region))
             tasks.append(task)
         data_list = await asyncio.gather(*tasks)
-
-        return get_schemas_list(data_list,  item.schema)
+        return get_schemas({'data': data_list},  item.schema)

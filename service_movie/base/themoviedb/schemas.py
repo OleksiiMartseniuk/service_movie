@@ -90,14 +90,29 @@ class TopRatingMovie(BaseMovieResult):
     pass
 
 
+class TopRatingMovieList(BaseModel):
+    """Список фильмы с самым высоким рейтингом"""
+    data: list[TopRatingMovie]
+
+
 class PopularMovie(BaseMovieResult):
     """Популярный фильм"""
     pass
 
 
+class PopularMovieList(BaseModel):
+    """Список популярный фильм"""
+    data: list[PopularMovie]
+
+
 class UpcomingMovie(BaseMovieResult):
     """Предстоящий фильм в кинотеатрах"""
     dates: Dates
+
+
+class UpcomingMovieList(BaseModel):
+    """Список предстоящий фильм в кинотеатрах"""
+    data: list[UpcomingMovie]
 
 
 class CreatedBy(BaseModel):
@@ -213,6 +228,16 @@ class PopularTV(BaseTVResult):
     pass
 
 
+class PopularTVList(BaseModel):
+    """Список популярные телешоу"""
+    data: list[PopularTV]
+
+
 class TopRatedTV(BaseTVResult):
     """Телешоу с самым высоким рейтингом"""
     pass
+
+
+class TopRatedTVList(BaseModel):
+    """Список телешоу с самым высоким рейтингом"""
+    data: list[TopRatedTV]

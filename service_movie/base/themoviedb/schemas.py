@@ -7,6 +7,11 @@ class Genre(BaseModel):
     name: str
 
 
+class Genres(BaseModel):
+    """Жанры"""
+    genres: list[Genre]
+
+
 class ProductionCompanies(BaseModel):
     """Производственные компании"""
     name: str

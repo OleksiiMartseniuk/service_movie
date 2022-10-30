@@ -5,7 +5,7 @@ from enum import Enum
 from pydantic import BaseModel
 
 from .api import TheMovieDatabaseApi
-from .validation import get_schemas_list
+from .validation import get_schemas_list, get_schemas
 from . import schemas
 
 
@@ -67,13 +67,7 @@ class MovieApi:
             logger.error('Нет данных жанров')
             return None
 
-        try:
-            genres = data['genres']
-        except KeyError:
-            logger.error('Нет ключа [genres]')
-            return None
-
-        return get_schemas_list(genres, schemas.Genre)
+        return get_schemas(data, schemas.Genres)
 
     async def get_count_page(
         self, item: ActionEnum, region: str = None

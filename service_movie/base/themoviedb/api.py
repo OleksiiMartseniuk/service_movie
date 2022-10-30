@@ -42,6 +42,7 @@ class TheMovieDatabaseApi:
             'language': self.language,
         }
         if kwargs:
+            # Добавляем только те параметры которые имеют значения
             params = {key: value for key, value in kwargs.items() if value}
             params_default.update(params)
         return params_default

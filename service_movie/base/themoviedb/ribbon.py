@@ -8,6 +8,7 @@ from .api import TheMovieDatabaseApi
 from .validation import get_schemas_list
 from . import schemas
 
+
 logger = logging.getLogger(__name__)
 
 

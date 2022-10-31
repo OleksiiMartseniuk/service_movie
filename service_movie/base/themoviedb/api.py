@@ -32,8 +32,10 @@ class TheMovieDatabaseApi:
                     else:
                         logger.error(f'status_code [{response.status_code}] '
                                      f'error_message [{response.json()}]')
+                        return None
                 except httpx.RequestError as exc:
                     logger.error(f'{exc.__class__}-{str(exc)}')
+                    return None
 
     async def _set_params(self, **kwargs) -> dict:
         """Формирования параметров"""

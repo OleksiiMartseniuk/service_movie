@@ -169,7 +169,7 @@ class TV(BaseModel):
     backdrop_path: str | None
     created_by: list[CreatedBy]
     episode_run_time: list[int]
-    first_air_date: str
+    first_air_date: str | None
     genres: list[Genre]
     homepage: str
     id: int
@@ -206,7 +206,7 @@ class TVResult(BaseModel):
     backdrop_path: str | None
     vote_average: float
     overview: str
-    first_air_date: str
+    first_air_date: str | None
     origin_country: list[str]
     genre_ids: list[int]
     original_language: str

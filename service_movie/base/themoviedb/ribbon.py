@@ -57,18 +57,6 @@ class MovieApi:
                 return None
         return func
 
-    async def get_genres(
-        self, tv: bool = False
-    ) -> list[schemas.Genre | None] | None:
-        """Получения жанров"""
-        data = await self.client.get_genres(tv=tv)
-
-        if not data:
-            logger.error('Нет данных жанров')
-            return None
-
-        return get_schemas(data, schemas.Genres)
-
     async def __get_count_page(
         self, item: ActionEnum, region: str = None
     ) -> int | None:
@@ -94,6 +82,36 @@ class MovieApi:
             count = 500
 
         return count
+
+    async def get_details(
+        self, id: int, tv: bool = False
+    ) -> schemas.Movie | schemas.TV | None:
+        """
+        Получить первичную информацию о фильме/сериалов
+        Default [получения информацию о фильме]
+        tv = True [получения информацию о сериалов]
+        """
+        data = await self.client.get_details(id=id, tv=tv)
+
+        if not data:
+            logger.error(f'Нет данных get_details[id={id}, tv={tv}]')
+            return None
+
+        schema = schemas.TV if tv else schemas.Movie
+
+        return get_schemas(data, schema)
+
+    async def get_genres(
+        self, tv: bool = False
+    ) -> list[schemas.Genre | None] | None:
+        """Получения жанров"""
+        data = await self.client.get_genres(tv=tv)
+
+        if not data:
+            logger.error('Нет данных жанров')
+            return None
+
+        return get_schemas(data, schemas.Genres)
 
     async def get_data(
         self, item: ActionEnum, region: str = None

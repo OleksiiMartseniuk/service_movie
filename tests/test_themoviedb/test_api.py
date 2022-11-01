@@ -34,3 +34,16 @@ async def test_get_genres(tv, mocker, client_api):
     )
     result = await client_api.get_genres(tv=tv)
     assert config_data.genres == result
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'params, result',
+    [
+        ({}, config_data.params_default),
+        (config_data.params_data, config_data.params_result)
+    ]
+)
+async def test_set_params(params, result, client_api):
+    params_result = await client_api._set_params(**params)
+    assert params_result == result

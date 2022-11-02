@@ -423,7 +423,7 @@ upcoming_movie = {
                 'id': 663712,
                 'original_language': 'en',
                 'original_title': 'Terrifier 2',
-                'overview': 'Клоун-убийца Арт воскрешен по воле зловещей сущности и возвращается в округ Майлз, чтобы выследить и уничтожить девочку-подростка и ее младшего брата в ночь на Хэллоуин. По мере того, как число жертв растет, брат с сестрой борются за то, чтобы остаться в живых и раскрыть истинную природу злых намерений Арта.',
+                'overview': 'Клоун-убийца Арт воскрешен по воле зловещей',
                 'popularity': 7117.087,
                 'poster_path': '/uHEQd4NgQQ48q9MkhvE7ZXEfVAS.jpg',
                 'release_date': '2022-11-03',
@@ -439,7 +439,7 @@ upcoming_movie = {
                 'id': 505642,
                 'original_language': 'en',
                 'original_title': 'Black Panther: Wakanda Forever',
-                'overview': 'После смерти короля Т`Чаллы королева Рамонда, Шури, М`Баку, Окойе и Дора Милаж сражаются, чтобы защитить Ваканду от мировых держав.',
+                'overview': 'После смерти короля Т`Чаллы королева Рамонда',
                 'popularity': 525.844,
                 'poster_path': '/i27h6Xru52Piif1V5ZZA0ZXlck1.jpg',
                 'release_date': '2022-11-10',
@@ -455,7 +455,7 @@ upcoming_movie = {
                 'id': 626872,
                 'original_language': 'ko',
                 'original_title': '비상선언',
-                'overview': 'На борту забитого до отказа авиалайнера, совершающего рейс на Гавайи, таинственно погибает один из пассажиров. Вскоре воздушное судно охватывает хаос: все больше людей оказываются поражены неизвестной болезнью. Оперативный штаб объявляет чрезвычайную ситуацию и пытается добиться посадки, но аэропорты не принимают зараженный рейс. Горючее на исходе, и теперь обреченный самолет может спасти лишь чудо...',
+                'overview': 'На борту забитого до отказа авиалайнера',
                 'popularity': 153.496,
                 'poster_path': '/8oGFB2S8cauOFl20ry90kT5gdcd.jpg',
                 'release_date': '2022-11-03',
@@ -470,3 +470,59 @@ upcoming_movie = {
 }
 
 upcoming_movie_schema = schemas.UpcomingMovie(**upcoming_movie)
+
+top_rating_tv = {
+    'page': 1,
+    'results':
+        [
+            {
+                'backdrop_path': '/99vBORZixICa32Pwdwj0lWcr8K.jpg',
+                'first_air_date': '2021-09-03',
+                'genre_ids': [10764],
+                'id': 130392,
+                'name': "The D'Amelio Show",
+                'origin_country': ['US'],
+                'original_language': 'en',
+                'original_name': "The D'Amelio Show",
+                'overview': '',
+                'popularity': 33.099,
+                'poster_path': '/phv2Jc4H8cvRzvTKb9X1uKMboTu.jpg',
+                'vote_average': 9,
+                'vote_count': 3117
+            },
+            {
+                'backdrop_path': '/84XPpjGvxNyExjSuLQe0SzioErt.jpg',
+                'first_air_date': '2008-01-20',
+                'genre_ids': [18],
+                'id': 1396,
+                'name': 'Во все тяжкие',
+                'origin_country': ['US'],
+                'original_language': 'en',
+                'original_name': 'Breaking Bad',
+                'overview': 'Вся жизнь немолодого школьного учителя химии',
+                'popularity': 542.675,
+                'poster_path': '/3NA1FOlnjE909OyVT534B7fw5h5.jpg',
+                'vote_average': 8.8,
+                'vote_count': 10244
+            },
+            {
+                'backdrop_path': '/rkB4LyZHo1NHXFEDHl9vSD9r1lI.jpg',
+                'first_air_date': '2021-11-06',
+                'genre_ids': [16, 10765, 10759, 18],
+                'id': 94605,
+                'name': 'Аркейн',
+                'origin_country': ['US'],
+                'original_language': 'en',
+                'original_name': 'Arcane',
+                'overview': 'История разворачивается в\xa0утопическом краю',
+                'popularity': 98.446,
+                'poster_path': '/wKve1C9FgzQlI7EsALktyplQ5NZ.jpg',
+                'vote_average': 8.7,
+                'vote_count': 2650
+            },
+        ],
+    'total_pages': 133,
+    'total_results': 2648
+}
+
+top_rating_tv_schema = schemas.TopRatedTV(**top_rating_tv)

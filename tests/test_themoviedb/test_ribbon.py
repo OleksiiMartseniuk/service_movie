@@ -94,3 +94,31 @@ async def test_get_details(id, tv, result, data, mocker, client_movie):
 
     result_data = await client_movie.get_details(id=id, tv=tv)
     assert result_data == result
+
+
+@pytest.mark.asyncio
+async def test_get_details_not_data(mocker, client_movie):
+    mocker.patch(config_data.mock_path_get, return_value=None)
+
+    result_data = await client_movie.get_details(id=1)
+    assert result_data is None
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('tv', [True, False])
+async def test_get_genres(tv, mocker, client_movie):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=config_data.genres
+    )
+
+    result = await client_movie.get_genres(tv=tv)
+    assert result == config_data.genres_schema
+
+
+@pytest.mark.asyncio
+async def test_get_genres_not_data(mocker, client_movie):
+    mocker.patch(config_data.mock_path_get, return_value=None)
+
+    result = await client_movie.get_genres()
+    assert result is None

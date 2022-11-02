@@ -84,3 +84,13 @@ async def test_get_popular_movie(mocker, client_api):
     )
     result = await client_api.get_popular_movie()
     assert result == config_data.popular_movie
+
+
+@pytest.mark.asyncio
+async def test_get_upcoming_movie(mocker, client_api):
+    mocker.patch(
+        'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get',
+        return_value=config_data.upcoming_movie
+    )
+    result = await client_api.get_upcoming_movie()
+    assert result == config_data.upcoming_movie

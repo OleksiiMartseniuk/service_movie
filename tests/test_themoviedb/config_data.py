@@ -526,3 +526,59 @@ top_rating_tv = {
 }
 
 top_rating_tv_schema = schemas.TopRatedTV(**top_rating_tv)
+
+popular_tv = {
+    'page': 1,
+    'results':
+        [
+            {
+                'backdrop_path': '/etj8E2o0Bud0HkONVQPjyCkIvpv.jpg',
+                'first_air_date': '2022-08-21',
+                'genre_ids': [10765, 18, 10759],
+                'id': 94997,
+                'name': 'Дом Дракона',
+                'origin_country': ['US'],
+                'original_language': 'en',
+                'original_name': 'House of the Dragon',
+                'overview': 'Члены дома Таргариенов оставляют обречённую Валирию и отправляются на запад, где обнаруживают огромную территорию, населённую враждующими королевствами.',
+                'popularity': 4034.906,
+                'poster_path': '/emAFaKrAn1mhJ3ZQbM2503a1X2s.jpg',
+                'vote_average': 8.5,
+                'vote_count': 2231
+            },
+            {
+                'backdrop_path': '/i9htchhoOl26cLaslVHXHghgLt0.jpg',
+                'first_air_date': '2015-10-19',
+                'genre_ids': [10759, 16, 10762],
+                'id': 65334,
+                'name': 'Леди Баг и Супер-кот',
+                'origin_country': ['FR'],
+                'original_language': 'fr',
+                'original_name': 'Miraculous, les aventures de Ladybug',
+                'overview': 'Адриан и\xa0Маринетт\xa0— старшеклассники, почти как все остальные. При малейшей угрозе Парижу они становятся ЛедиБаг и\xa0Котом Нуаром. Их\xa0миссия\xa0— захватить акум (тёмных бабочек), которые превращают людей в\xa0супер-злодеев. Когда герои объединяются, каждый из\xa0них не\xa0знает истинной личности другого. Маринетт не\xa0знает, что Кот Нуар на\xa0самом деле Адриан\xa0— мальчик в\xa0которого она тайно влюблена, а\xa0Адриан, чьё сердце бьётся ради ЛедиБаг, не\xa0знает, что под маской супер-героини скрывается милая и\xa0ветреная одноклассница.',
+                'popularity': 2592.78,
+                'poster_path': '/yc7WYrxhw7PdeTGrrq2pvTWkgaO.jpg',
+                'vote_average': 8,
+                'vote_count': 3840
+            },
+            {
+                'backdrop_path': '/1rO4xoCo4Z5WubK0OwdVll3DPYo.jpg',
+                'first_air_date': '2022-09-01',
+                'genre_ids': [10765, 10759, 18],
+                'id': 84773,
+                'name': 'Властелин колец: Кольца власти',
+                'origin_country': ['US'],
+                'original_language': 'en',
+                'original_name': 'The Lord of the Rings: The Rings of Power',
+                'overview': 'Несмотря на\xa0то, что\xa0наступили времена относительного мира, герои вынуждены противостоять возрождению зла\xa0в Средиземье. Повсюду\xa0—\xa0от самых мрачных глубин Мглистых гор\xa0до величественных лесов Линдона, захватывающего дух\xa0островного королевства Нуменор и\xa0самых дальних уголков мира\xa0—\xa0в каждом королевстве герои событий создают наследие, которое будет жить еще\xa0долго после их\xa0ухода.',
+                'popularity': 2374.417,
+                'poster_path': '/gGX72S7AY4ZvdK8bCZ6ga2SAnY.jpg',
+                'vote_average': 7.6,
+                'vote_count': 1391
+            },
+        ],
+    'total_pages': 6967,
+    'total_results': 139323
+}
+
+popular_tv_schema = schemas.PopularTV(**popular_tv)

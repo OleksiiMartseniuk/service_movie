@@ -411,3 +411,62 @@ popular_movie = {
 }
 
 popular_movie_schema = schemas.PopularMovie(**popular_movie)
+
+upcoming_movie = {
+    'dates': {'maximum': '2022-11-24', 'minimum': '2022-11-01'},
+    'page': 1, 'results':
+        [
+            {
+                'adult': False,
+                'backdrop_path': '/y5Z0WesTjvn59jP6yo459eUsbli.jpg',
+                'genre_ids': [27, 53],
+                'id': 663712,
+                'original_language': 'en',
+                'original_title': 'Terrifier 2',
+                'overview': 'Клоун-убийца Арт воскрешен по воле зловещей сущности и возвращается в округ Майлз, чтобы выследить и уничтожить девочку-подростка и ее младшего брата в ночь на Хэллоуин. По мере того, как число жертв растет, брат с сестрой борются за то, чтобы остаться в живых и раскрыть истинную природу злых намерений Арта.',
+                'popularity': 7117.087,
+                'poster_path': '/uHEQd4NgQQ48q9MkhvE7ZXEfVAS.jpg',
+                'release_date': '2022-11-03',
+                'title': 'Ужасающий 2',
+                'video': False,
+                'vote_average': 7.2,
+                'vote_count': 305
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/yYrvN5WFeGYjJnRzhY0QXuo4Isw.jpg',
+                'genre_ids': [28, 12, 878],
+                'id': 505642,
+                'original_language': 'en',
+                'original_title': 'Black Panther: Wakanda Forever',
+                'overview': 'После смерти короля Т`Чаллы королева Рамонда, Шури, М`Баку, Окойе и Дора Милаж сражаются, чтобы защитить Ваканду от мировых держав.',
+                'popularity': 525.844,
+                'poster_path': '/i27h6Xru52Piif1V5ZZA0ZXlck1.jpg',
+                'release_date': '2022-11-10',
+                'title': 'Чёрная пантера: Ваканда навеки',
+                'video': False,
+                'vote_average': 0,
+                'vote_count': 0
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/fI8hv1IqWUIUjx4YRfl6TWhdqHW.jpg',
+                'genre_ids': [18, 28],
+                'id': 626872,
+                'original_language': 'ko',
+                'original_title': '비상선언',
+                'overview': 'На борту забитого до отказа авиалайнера, совершающего рейс на Гавайи, таинственно погибает один из пассажиров. Вскоре воздушное судно охватывает хаос: все больше людей оказываются поражены неизвестной болезнью. Оперативный штаб объявляет чрезвычайную ситуацию и пытается добиться посадки, но аэропорты не принимают зараженный рейс. Горючее на исходе, и теперь обреченный самолет может спасти лишь чудо...',
+                'popularity': 153.496,
+                'poster_path': '/8oGFB2S8cauOFl20ry90kT5gdcd.jpg',
+                'release_date': '2022-11-03',
+                'title': 'Чрезвычайная ситуация',
+                'video': False,
+                'vote_average': 7.3,
+                'vote_count': 58
+            },
+        ],
+    'total_pages': 3,
+    'total_results': 44
+}
+
+upcoming_movie_schema = schemas.UpcomingMovie(**upcoming_movie)

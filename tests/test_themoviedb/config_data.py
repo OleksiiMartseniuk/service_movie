@@ -322,7 +322,7 @@ top_rating_movie = {
                 'id': 497,
                 'original_language': 'en',
                 'original_title': 'The Green Mile',
-                'overview': 'Пол Эджкомб - начальник блока смертников в тюрьме',
+                'overview': 'Пол Эджкомб - начальник блока смертников',
                 'popularity': 76.954,
                 'poster_path': '/qm54bHOkvwnrSvLHdHnhdmi7PUy.jpg',
                 'release_date': '2000-04-18',
@@ -353,3 +353,61 @@ top_rating_movie = {
 }
 
 top_rating_movie_schema = schemas.TopRatingMovie(**top_rating_movie)
+
+popular_movie = {
+    'page': 1,
+    'results':
+        [
+            {
+                'adult': False,
+                'backdrop_path': '/y5Z0WesTjvn59jP6yo459eUsbli.jpg',
+                'genre_ids': [27, 53],
+                'id': 663712,
+                'original_language': 'en',
+                'original_title': 'Terrifier 2',
+                'overview': 'Клоун-убийца Арт воскрешен по воле ',
+                'popularity': 7117.087,
+                'poster_path': '/uHEQd4NgQQ48q9MkhvE7ZXEfVAS.jpg',
+                'release_date': '2022-11-03',
+                'title': 'Ужасающий 2',
+                'video': False,
+                'vote_average': 7.2,
+                'vote_count': 305
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/tIX6j3NzadlwGcJ52nuWdmtOQkg.jpg',
+                'genre_ids': [27, 53, 9648], 'id': 717728,
+                'original_language': 'en',
+                'original_title': 'Jeepers Creepers: Reborn',
+                'overview': 'Вместе со своим парнем-гиком Лэйн оправляется',
+                'popularity': 2320.615,
+                'poster_path': '/yvzqzHmX9F54g4FNLM49YNup8Vi.jpg',
+                'release_date': '2022-09-15',
+                'title': 'Джиперс Криперс: Возрожденный',
+                'video': False,
+                'vote_average': 5.8,
+                'vote_count': 404
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/5GA3vV1aWWHTSDO5eno8V5zDo8r.jpg',
+                'genre_ids': [27, 53],
+                'id': 760161,
+                'original_language': 'en',
+                'original_title': 'Orphan: First Kill',
+                'overview': '2007 год. Сбежав из эстонской психиатрическо',
+                'popularity': 1964.552,
+                'poster_path': '/i4BaMES0YBSAu4JYz4OFQTAgJBL.jpg',
+                'release_date': '2022-08-11',
+                'title': 'Дитя тьмы: первая жертва',
+                'video': False,
+                'vote_average': 6.8,
+                'vote_count': 1195
+            },
+        ],
+    'total_pages': 1009,
+    'total_results': 20176
+}
+
+popular_movie_schema = schemas.PopularMovie(**popular_movie)

@@ -230,3 +230,126 @@ tv = {
 }
 
 tv_schema = schemas.TV(**tv)
+
+top_rating_movie = {
+    'page': 1,
+    'results':
+        [
+            {
+                'adult': False,
+                'backdrop_path': '/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg',
+                'genre_ids': [18, 80],
+                'id': 278,
+                'original_language': 'en',
+                'original_title': 'The Shawshank Redemption',
+                'overview': 'Фильм удостоен шести номинаций на\xa0«Оскар»,',
+                'popularity': 93.513,
+                'poster_path': '/yvmKPlTIi0xdcFQIFcQKQJcI63W.jpg',
+                'release_date': '2019-10-24',
+                'title': 'Побег из Шоушенка',
+                'video': False,
+                'vote_average': 8.7,
+                'vote_count': 22576
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/zb6fM1CX41D9rF9hdgclu0peUmy.jpg',
+                'genre_ids': [18, 36, 10752],
+                'id': 424,
+                'original_language': 'en',
+                'original_title': "Schindler's List",
+                'overview': 'Лента рассказывает реальную историю ',
+                'popularity': 63.97,
+                'poster_path': '/4K8fGGcJP2EoGDucILnaJcOJhZl.jpg',
+                'release_date': '1994-05-21',
+                'title': 'Список Шиндлера',
+                'video': False,
+                'vote_average': 8.6,
+                'vote_count': 13400
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/Ab8mkHmkYADjU7wQiOkia9BzGvS.jpg',
+                'genre_ids': [16, 10751, 14],
+                'id': 129,
+                'original_language': 'ja',
+                'original_title': '千と千尋の神隠し',
+                'overview': 'Маленькая Тихиро вместе с мамой и папой',
+                'popularity': 97.61,
+                'poster_path': '/rq2IzPgweryLrN3H19Jjh1TtBxf.jpg',
+                'release_date': '2002-12-31',
+                'title': 'Унесённые призраками',
+                'video': False,
+                'vote_average': 8.5,
+                'vote_count': 13495
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/mMtUybQ6hL24FXo0F3Z4j2KG7kZ.jpg',
+                'genre_ids': [10749, 16, 18],
+                'id': 372058,
+                'original_language': 'ja',
+                'original_title': '君の名は。',
+                'overview': 'Токийский парень Таки и провинциальная девушка',
+                'popularity': 148.805,
+                'poster_path': '/iUQlwEFo90cUHD3MINhbhz3V8cR.jpg',
+                'release_date': '2018-01-03',
+                'title': 'Твоё имя',
+                'video': False,
+                'vote_average': 8.5,
+                'vote_count': 9190
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg',
+                'genre_ids': [35, 53, 18],
+                'id': 496243,
+                'original_language': 'ko',
+                'original_title': '기생충',
+                'overview': 'Обычное корейское семейство жизнь не балует',
+                'popularity': 71.389,
+                'poster_path': '/zg3lUyLTnpbS5N29G6B3a63O7uP.jpg',
+                'release_date': '2019-07-04',
+                'title': 'Паразиты',
+                'video': False,
+                'vote_average': 8.5,
+                'vote_count': 14635
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/l6hQWH9eDksNJNiXWYRkWqikOdu.jpg',
+                'genre_ids': [14, 18, 80],
+                'id': 497,
+                'original_language': 'en',
+                'original_title': 'The Green Mile',
+                'overview': 'Пол Эджкомб - начальник блока смертников в тюрьме',
+                'popularity': 76.954,
+                'poster_path': '/qm54bHOkvwnrSvLHdHnhdmi7PUy.jpg',
+                'release_date': '2000-04-18',
+                'title': 'Зелёная миля',
+                'video': False,
+                'vote_average': 8.5,
+                'vote_count': 14563
+            },
+            {
+                'adult': False,
+                'backdrop_path': '/nMKdUUepR0i5zn0y1T4CsSB5chy.jpg',
+                'genre_ids': [18, 28, 80, 53],
+                'id': 155,
+                'original_language': 'en',
+                'original_title': 'The Dark Knight',
+                'overview': 'Бэтмен поднимает ставки в войне с криминалом.',
+                'popularity': 98.045,
+                'poster_path': '/dxWaYQtgpLbycqUpHzkqqYkT5I3.jpg',
+                'release_date': '2008-08-14',
+                'title': 'Тёмный рыцарь',
+                'video': False,
+                'vote_average': 8.5,
+                'vote_count': 28508
+            },
+        ],
+        'total_pages': 142,
+        'total_results': 282
+}
+
+top_rating_movie_schema = schemas.TopRatingMovie(**top_rating_movie)

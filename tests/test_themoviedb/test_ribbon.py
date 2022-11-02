@@ -68,3 +68,29 @@ async def test_get_count_page_key_error(mocker, client_movie):
         ActionEnum.POPULAR_MOVIE
     )
     assert count is None
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'id, tv, result, data',
+    [
+        (
+            config_data.movie['id'],
+            False, config_data.movie_schema,
+            config_data.movie
+        ),
+        (
+            config_data.tv['id'],
+            True, config_data.tv_schema,
+            config_data.tv
+        )
+    ]
+)
+async def test_get_details(id, tv, result, data, mocker, client_movie):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=data
+    )
+
+    result_data = await client_movie.get_details(id=id, tv=tv)
+    assert result_data == result

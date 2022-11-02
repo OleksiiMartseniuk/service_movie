@@ -104,3 +104,13 @@ async def test_get_top_rating_tv(mocker, client_api):
     )
     result = await client_api.get_top_rating_tv()
     assert result == config_data.top_rating_tv
+
+
+@pytest.mark.asyncio
+async def test_get_popular_tv(mocker, client_api):
+    mocker.patch(
+        'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get',
+        return_value=config_data.popular_tv
+    )
+    result = await client_api.get_popular_tv()
+    assert result == config_data.popular_tv

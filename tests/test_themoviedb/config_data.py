@@ -1,5 +1,8 @@
 from service_movie.base.themoviedb import schemas
 
+
+mock_path_get = 'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get'
+
 params_default = {'api_key': 'test_token', 'language': 'ru-Ru'}
 params_data = {'params1': 'params1', 'params2': None}
 params_result = {
@@ -540,7 +543,7 @@ popular_tv = {
                 'origin_country': ['US'],
                 'original_language': 'en',
                 'original_name': 'House of the Dragon',
-                'overview': 'Члены дома Таргариенов оставляют обречённую Валирию и отправляются на запад, где обнаруживают огромную территорию, населённую враждующими королевствами.',
+                'overview': 'Члены дома Таргариенов оставляют обречённую',
                 'popularity': 4034.906,
                 'poster_path': '/emAFaKrAn1mhJ3ZQbM2503a1X2s.jpg',
                 'vote_average': 8.5,
@@ -555,7 +558,7 @@ popular_tv = {
                 'origin_country': ['FR'],
                 'original_language': 'fr',
                 'original_name': 'Miraculous, les aventures de Ladybug',
-                'overview': 'Адриан и\xa0Маринетт\xa0— старшеклассники, почти как все остальные. При малейшей угрозе Парижу они становятся ЛедиБаг и\xa0Котом Нуаром. Их\xa0миссия\xa0— захватить акум (тёмных бабочек), которые превращают людей в\xa0супер-злодеев. Когда герои объединяются, каждый из\xa0них не\xa0знает истинной личности другого. Маринетт не\xa0знает, что Кот Нуар на\xa0самом деле Адриан\xa0— мальчик в\xa0которого она тайно влюблена, а\xa0Адриан, чьё сердце бьётся ради ЛедиБаг, не\xa0знает, что под маской супер-героини скрывается милая и\xa0ветреная одноклассница.',
+                'overview': 'Адриан и\xa0Маринетт\xa0— старшеклассники, почти',
                 'popularity': 2592.78,
                 'poster_path': '/yc7WYrxhw7PdeTGrrq2pvTWkgaO.jpg',
                 'vote_average': 8,
@@ -570,7 +573,7 @@ popular_tv = {
                 'origin_country': ['US'],
                 'original_language': 'en',
                 'original_name': 'The Lord of the Rings: The Rings of Power',
-                'overview': 'Несмотря на\xa0то, что\xa0наступили времена относительного мира, герои вынуждены противостоять возрождению зла\xa0в Средиземье. Повсюду\xa0—\xa0от самых мрачных глубин Мглистых гор\xa0до величественных лесов Линдона, захватывающего дух\xa0островного королевства Нуменор и\xa0самых дальних уголков мира\xa0—\xa0в каждом королевстве герои событий создают наследие, которое будет жить еще\xa0долго после их\xa0ухода.',
+                'overview': 'Несмотря на\xa0то, что\xa0наступили времена',
                 'popularity': 2374.417,
                 'poster_path': '/gGX72S7AY4ZvdK8bCZ6ga2SAnY.jpg',
                 'vote_average': 7.6,

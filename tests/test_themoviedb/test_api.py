@@ -29,7 +29,7 @@ async def test_get_status_code(status_code, mocker, client_api):
 @pytest.mark.parametrize('tv', [True, False])
 async def test_get_genres(tv, mocker, client_api):
     mocker.patch(
-        'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get',
+        config_data.mock_path_get,
         return_value=config_data.genres
     )
     result = await client_api.get_genres(tv=tv)
@@ -59,7 +59,7 @@ async def test_set_params(params, result, client_api):
 )
 async def test_get_details(tv, response, id, mocker, client_api):
     mocker.patch(
-        'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get',
+        config_data.mock_path_get,
         return_value=response
     )
     result = await client_api.get_details(id=id, tv=tv)
@@ -69,7 +69,7 @@ async def test_get_details(tv, response, id, mocker, client_api):
 @pytest.mark.asyncio
 async def test_get_top_rating_movie(mocker, client_api):
     mocker.patch(
-        'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get',
+        config_data.mock_path_get,
         return_value=config_data.top_rating_movie
     )
     result = await client_api.get_top_rating_movie()
@@ -79,7 +79,7 @@ async def test_get_top_rating_movie(mocker, client_api):
 @pytest.mark.asyncio
 async def test_get_popular_movie(mocker, client_api):
     mocker.patch(
-        'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get',
+        config_data.mock_path_get,
         return_value=config_data.popular_movie
     )
     result = await client_api.get_popular_movie()
@@ -89,7 +89,7 @@ async def test_get_popular_movie(mocker, client_api):
 @pytest.mark.asyncio
 async def test_get_upcoming_movie(mocker, client_api):
     mocker.patch(
-        'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get',
+        config_data.mock_path_get,
         return_value=config_data.upcoming_movie
     )
     result = await client_api.get_upcoming_movie()
@@ -99,7 +99,7 @@ async def test_get_upcoming_movie(mocker, client_api):
 @pytest.mark.asyncio
 async def test_get_top_rating_tv(mocker, client_api):
     mocker.patch(
-        'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get',
+        config_data.mock_path_get,
         return_value=config_data.top_rating_tv
     )
     result = await client_api.get_top_rating_tv()
@@ -109,7 +109,7 @@ async def test_get_top_rating_tv(mocker, client_api):
 @pytest.mark.asyncio
 async def test_get_popular_tv(mocker, client_api):
     mocker.patch(
-        'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get',
+        config_data.mock_path_get,
         return_value=config_data.popular_tv
     )
     result = await client_api.get_popular_tv()

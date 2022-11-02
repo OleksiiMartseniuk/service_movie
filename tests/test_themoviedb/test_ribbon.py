@@ -2,6 +2,8 @@ import pytest
 
 from service_movie.base.themoviedb.ribbon import ActionEnum
 
+from . import config_data
+
 
 def test_get_link_method(client_movie):
     method = client_movie._MovieApi__get_link_method(
@@ -27,3 +29,42 @@ def test_get_link_method_not_action(client_movie):
     method = client_movie._MovieApi__get_link_method(ActionEnum.POPULAR_TV)
     assert method is None
 
+
+@pytest.mark.asyncio
+async def test_get_count_page(mocker, client_movie):
+    page = 422
+    data = config_data.popular_movie.copy()
+    data['total_pages'] = page
+
+    mocker.patch(config_data.mock_path_get, return_value=data)
+
+    count = await client_movie._MovieApi__get_count_page(
+        ActionEnum.POPULAR_MOVIE
+    )
+    assert count == page
+
+
+@pytest.mark.asyncio
+async def test_get_count_page_if_500(mocker, client_movie):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=config_data.popular_movie
+    )
+
+    count = await client_movie._MovieApi__get_count_page(
+        ActionEnum.POPULAR_MOVIE
+    )
+    assert count == 500
+
+
+@pytest.mark.asyncio
+async def test_get_count_page_key_error(mocker, client_movie):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value={'test': 'test'}
+    )
+
+    count = await client_movie._MovieApi__get_count_page(
+        ActionEnum.POPULAR_MOVIE
+    )
+    assert count is None

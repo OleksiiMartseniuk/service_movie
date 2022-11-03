@@ -25,8 +25,9 @@ def test_get_link_method(client_movie):
 
 
 def test_get_link_method_not_action(client_movie):
-    ActionEnum.POPULAR_TV.action = 'actin'
-    method = client_movie._MovieApi__get_link_method(ActionEnum.POPULAR_TV)
+    method = client_movie._MovieApi__get_link_method(
+        config_data.ActionTest.TEST_ITEM
+    )
     assert method is None
 
 
@@ -122,3 +123,67 @@ async def test_get_genres_not_data(mocker, client_movie):
 
     result = await client_movie.get_genres()
     assert result is None
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'data, action, result',
+    [
+        (
+            config_data.popular_movie,
+            ActionEnum.POPULAR_MOVIE,
+            config_data.popular_movie_list_schema
+        ),
+        (
+            config_data.popular_tv,
+            ActionEnum.POPULAR_TV,
+            config_data.popular_tv_list_schema
+        ),
+        (
+            config_data.top_rating_movie,
+            ActionEnum.TOP_RATING_MOVIE,
+            config_data.top_rating_movie_list_schema
+        ),
+        (
+            config_data.top_rating_tv,
+            ActionEnum.TOP_RATING_TV,
+            config_data.top_rating_tv_list_schema
+        ),
+        (
+            config_data.upcoming_movie,
+            ActionEnum.UPCOMING_MOVIE,
+            config_data.upcoming_movie_list_schema
+        ),
+    ]
+)
+async def test_get_data(data, action, result, mocker, client_movie):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=data
+    )
+
+    result_data = await client_movie.get_data(action)
+    assert result_data == result
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'action',
+    [
+        ActionEnum.POPULAR_MOVIE,
+        ActionEnum.POPULAR_TV,
+        ActionEnum.TOP_RATING_MOVIE,
+        ActionEnum.TOP_RATING_TV,
+        ActionEnum.UPCOMING_MOVIE
+    ]
+)
+async def test_get_data_not_count(action, mocker, client_movie):
+    mocker.patch(
+        config_data.mock_path_get_count_page,
+        return_value=None
+    )
+    mock_get_link_method = mocker.patch(config_data.mock_get_link_method)
+    result = await client_movie.get_data(action)
+
+    assert result is None
+    mock_get_link_method.assert_not_called()

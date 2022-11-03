@@ -10,6 +10,10 @@ class ActionTest(Enum):
         self.schema = schema
 
 
+mock_get_link_method = 'service_movie.base.themoviedb.ribbon.'\
+                       'MovieApi._MovieApi__get_link_method'
+mock_path_get_count_page = 'service_movie.base.themoviedb.ribbon.'\
+                           'MovieApi._MovieApi__get_count_page'
 mock_path_get = 'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get'
 
 params_default = {'api_key': 'test_token', 'language': 'ru-Ru'}

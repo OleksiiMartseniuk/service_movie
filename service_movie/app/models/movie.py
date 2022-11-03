@@ -12,3 +12,15 @@ genres = sqlalchemy.Table(
     sqlalchemy.Column("id_genes", sqlalchemy.Integer()),
     sqlalchemy.Column("name", sqlalchemy.String(100)),
 )
+
+
+# Таблица производственные компании
+production_companies = sqlalchemy.Table(
+    "production_companies",
+    metadata,
+    sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
+    sqlalchemy.Column("id_companies", sqlalchemy.Integer(), nullable=False),
+    sqlalchemy.Column("name", sqlalchemy.String(150), nullable=False),
+    sqlalchemy.Column("logo_path", sqlalchemy.String(255)),
+    sqlalchemy.Column("origin_country", sqlalchemy.String(255)),
+)

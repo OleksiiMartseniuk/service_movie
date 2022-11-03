@@ -1,4 +1,13 @@
 from service_movie.base.themoviedb import schemas
+from enum import Enum
+
+
+class ActionTest(Enum):
+    TEST_ITEM = ('item_test', 'schema_test')
+
+    def __init__(self, action: str, schema: str) -> None:
+        self.action = action
+        self.schema = schema
 
 
 mock_path_get = 'service_movie.base.themoviedb.api.TheMovieDatabaseApi.get'
@@ -356,6 +365,9 @@ top_rating_movie = {
 }
 
 top_rating_movie_schema = schemas.TopRatingMovie(**top_rating_movie)
+top_rating_movie_list_schema = schemas.TopRatingMovieList(
+    data=[top_rating_movie for _ in range(top_rating_movie['total_pages'])]
+)
 
 popular_movie = {
     'page': 1,
@@ -414,6 +426,9 @@ popular_movie = {
 }
 
 popular_movie_schema = schemas.PopularMovie(**popular_movie)
+popular_movie_list_schema = schemas.PopularMovieList(
+    data=[popular_movie for _ in range(500)]
+)
 
 upcoming_movie = {
     'dates': {'maximum': '2022-11-24', 'minimum': '2022-11-01'},
@@ -473,6 +488,9 @@ upcoming_movie = {
 }
 
 upcoming_movie_schema = schemas.UpcomingMovie(**upcoming_movie)
+upcoming_movie_list_schema = schemas.UpcomingMovieList(
+    data=[upcoming_movie for _ in range(upcoming_movie['total_pages'])]
+)
 
 top_rating_tv = {
     'page': 1,
@@ -529,6 +547,9 @@ top_rating_tv = {
 }
 
 top_rating_tv_schema = schemas.TopRatedTV(**top_rating_tv)
+top_rating_tv_list_schema = schemas.TopRatedTVList(
+    data=[top_rating_tv for _ in range(top_rating_tv['total_pages'])]
+)
 
 popular_tv = {
     'page': 1,
@@ -585,3 +606,6 @@ popular_tv = {
 }
 
 popular_tv_schema = schemas.PopularTV(**popular_tv)
+popular_tv_list_schema = schemas.PopularTVList(
+    data=[popular_tv for _ in range(500)]
+)

@@ -24,3 +24,13 @@ production_companies = sqlalchemy.Table(
     sqlalchemy.Column("logo_path", sqlalchemy.String(255)),
     sqlalchemy.Column("origin_country", sqlalchemy.String(255)),
 )
+
+
+# Таблица страны производства
+production_countries = sqlalchemy.Table(
+    "production_countries",
+    metadata,
+    sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
+    sqlalchemy.Column("iso_3166_1", sqlalchemy.String(150)),
+    sqlalchemy.Column("name", sqlalchemy.String(150)),
+)

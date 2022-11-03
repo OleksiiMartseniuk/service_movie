@@ -124,9 +124,6 @@ class MovieApi:
 
         func = self.__get_link_method(item=item)
 
-        if not func:
-            return None
-
         # Создания списка задач
         tasks = []
         for page in range(1, count + 1):

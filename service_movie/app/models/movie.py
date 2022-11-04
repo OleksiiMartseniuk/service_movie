@@ -34,3 +34,68 @@ production_countries = sqlalchemy.Table(
     sqlalchemy.Column("iso_3166_1", sqlalchemy.String(150)),
     sqlalchemy.Column("name", sqlalchemy.String(150)),
 )
+
+
+# m2m таблица фильмов и жанров
+movie_genre = sqlalchemy.Table(
+    "movie_genre",
+    metadata,
+    sqlalchemy.Column("movie_id", sqlalchemy.ForeignKey("movies.id")),
+    sqlalchemy.Column("genre_id", sqlalchemy.ForeignKey("genres.id")),
+)
+
+
+# m2m таблица фильмов и страны производства
+movie_production_countries = sqlalchemy.Table(
+    "movie_production_countries",
+    metadata,
+    sqlalchemy.Column("movie_id", sqlalchemy.ForeignKey("movies.id")),
+    sqlalchemy.Column(
+        "production_countries_id",
+        sqlalchemy.ForeignKey("production_countries.id")
+    ),
+)
+
+
+# m2m таблица фильмов и производственные компании
+movie_production_companies = sqlalchemy.Table(
+    "movie_production_companies",
+    metadata,
+    sqlalchemy.Column("movie_id", sqlalchemy.ForeignKey("movies.id")),
+    sqlalchemy.Column(
+        "production_companies_id",
+        sqlalchemy.ForeignKey("production_companies.id")
+    ),
+)
+
+
+# Таблица фильмов
+movie = sqlalchemy.Table(
+    "movies",
+    metadata,
+    sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
+    sqlalchemy.Column("id_movie", sqlalchemy.Integer(), index=True),
+    sqlalchemy.Column("title", sqlalchemy.String(255), nullable=False),
+    sqlalchemy.Column("adult", sqlalchemy.Boolean()),
+    sqlalchemy.Column("backdrop_path", sqlalchemy.String(255)),
+    sqlalchemy.Column("budget", sqlalchemy.Integer()),
+    sqlalchemy.Column("homepage", sqlalchemy.String(255)),
+    sqlalchemy.Column("imdb_id", sqlalchemy.String(50)),
+    sqlalchemy.Column("original_language", sqlalchemy.String(255)),
+    sqlalchemy.Column("original_title", sqlalchemy.String(255)),
+    sqlalchemy.Column("overview", sqlalchemy.Text()),
+    sqlalchemy.Column("original_title", sqlalchemy.String(255)),
+    sqlalchemy.Column("popularity", sqlalchemy.Float()),
+    sqlalchemy.Column("poster_path", sqlalchemy.String(255)),
+    sqlalchemy.Column("release_date", sqlalchemy.Date()),
+    sqlalchemy.Column("revenue", sqlalchemy.Integer()),
+    sqlalchemy.Column("runtime", sqlalchemy.Integer()),
+    sqlalchemy.Column("status", sqlalchemy.String(100)),
+    sqlalchemy.Column("tagline", sqlalchemy.String(255)),
+    sqlalchemy.Column("video", sqlalchemy.Boolean()),
+    sqlalchemy.Column("vote_average", sqlalchemy.Float()),
+    sqlalchemy.Column("vote_count", sqlalchemy.Integer()),
+    # production_companies m2m
+    # production_countries m2m
+    # genres m2m
+)

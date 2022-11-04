@@ -26,6 +26,18 @@ class ProductionCountries(BaseModel):
     name: str
 
 
+class Countries(BaseModel):
+    """Страны производства"""
+    iso_3166_1: str
+    english_name: str
+    native_name: str
+
+
+class CountriesList(BaseModel):
+    """Список Страны производства"""
+    data: list[Countries]
+
+
 class Dates(BaseModel):
     """Дата"""
     maximum: str
@@ -162,6 +174,11 @@ class SpokenLanguages(BaseModel):
     english_name: str
     iso_639_1: str
     name: str
+
+
+class SpokenLanguagesList(BaseModel):
+    """Список Разговорные языки"""
+    data: list[SpokenLanguages]
 
 
 class TV(BaseModel):

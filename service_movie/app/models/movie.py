@@ -129,3 +129,18 @@ networks = sqlalchemy.Table(
     sqlalchemy.Column("logo_path", sqlalchemy.String(255)),
     sqlalchemy.Column("origin_country", sqlalchemy.String(20)),
 )
+
+
+# Таблица сезон
+seasons = sqlalchemy.Table(
+    "seasons",
+    metadata,
+    sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
+    sqlalchemy.Column("id_seasons", sqlalchemy.Integer()),
+    sqlalchemy.Column("air_date", sqlalchemy.Date()),
+    sqlalchemy.Column("episode_count", sqlalchemy.Integer()),
+    sqlalchemy.Column("name", sqlalchemy.String(255)),
+    sqlalchemy.Column("overview", sqlalchemy.Text()),
+    sqlalchemy.Column("poster_path", sqlalchemy.String(255)),
+    sqlalchemy.Column("season_number", sqlalchemy.Integer()),
+)

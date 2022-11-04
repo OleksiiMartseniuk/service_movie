@@ -613,3 +613,39 @@ popular_tv_schema = schemas.PopularTV(**popular_tv)
 popular_tv_list_schema = schemas.PopularTVList(
     data=[popular_tv for _ in range(500)]
 )
+
+languages = [
+    {
+        'iso_3166_1': 'AD',
+        'english_name': 'Andorra',
+        'native_name': 'Andorra'
+    },
+    {
+        'iso_3166_1': 'AE',
+        'english_name': 'United Arab Emirates',
+        'native_name': 'United Arab Emirates'
+    },
+    {
+        'iso_3166_1': 'AF',
+        'english_name': 'Afghanistan',
+        'native_name': 'Afghanistan'
+    }
+]
+
+countries = [
+    {
+        'iso_3166_1': 'ZM',
+        'english_name': 'Zambia',
+        'native_name': 'Zambia'
+    },
+    {
+        'iso_3166_1': 'ZR',
+        'english_name': 'Zaire',
+        'native_name': 'Zaire'
+    },
+    {
+        'iso_3166_1': 'ZW',
+        'english_name': 'Zimbabwe',
+        'native_name': 'Zimbabwe'
+    }
+]

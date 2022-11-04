@@ -117,3 +117,15 @@ last_episode_to_air = sqlalchemy.Table(
     sqlalchemy.Column("vote_average", sqlalchemy.Float()),
     sqlalchemy.Column("vote_count", sqlalchemy.Integer()),
 )
+
+
+# Таблица сети
+networks = sqlalchemy.Table(
+    "networks",
+    metadata,
+    sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
+    sqlalchemy.Column("id_network", sqlalchemy.Integer()),
+    sqlalchemy.Column("name", sqlalchemy.String(50)),
+    sqlalchemy.Column("logo_path", sqlalchemy.String(255)),
+    sqlalchemy.Column("origin_country", sqlalchemy.String(20)),
+)

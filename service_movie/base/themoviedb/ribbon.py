@@ -103,7 +103,7 @@ class MovieApi:
 
     async def get_genres(
         self, tv: bool = False
-    ) -> list[schemas.Genre | None] | None:
+    ) -> list[schemas.Genre] | None:
         """Получения жанров"""
         data = await self.client.get_genres(tv=tv)
 
@@ -112,6 +112,26 @@ class MovieApi:
             return None
 
         return get_schemas(data, schemas.Genres)
+
+    async def get_languages(self) -> schemas.SpokenLanguagesList | None:
+        """Получите список языков"""
+        data = await self.client.get_languages()
+
+        if not data:
+            logger.error('Нет данных get_languages')
+            return None
+
+        return get_schemas({'data': data}, schemas.SpokenLanguagesList)
+
+    async def get_countries(self) -> schemas.CountriesList | None:
+        """Получить список стран"""
+        data = await self.client.get_countries()
+
+        if not data:
+            logger.error('Нет данных get_countries')
+            return None
+
+        return get_schemas({'data': data}, schemas.CountriesList)
 
     async def get_data(
         self, item: ActionEnum, region: str = None

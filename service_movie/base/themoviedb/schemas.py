@@ -173,7 +173,7 @@ class SpokenLanguages(BaseModel):
     """Разговорные языки"""
     english_name: str
     iso_639_1: str
-    name: str
+    name: str | None
 
 
 class SpokenLanguagesList(BaseModel):

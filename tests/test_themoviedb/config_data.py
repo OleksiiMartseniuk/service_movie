@@ -616,21 +616,24 @@ popular_tv_list_schema = schemas.PopularTVList(
 
 languages = [
     {
-        'iso_3166_1': 'AD',
-        'english_name': 'Andorra',
-        'native_name': 'Andorra'
+        'iso_639_1': "bi",
+        'english_name': "Bislama",
+        'name': ""
     },
     {
-        'iso_3166_1': 'AE',
-        'english_name': 'United Arab Emirates',
-        'native_name': 'United Arab Emirates'
+        'iso_639_1': "cs",
+        'english_name': "Czech",
+        'name': "Český"
     },
     {
-        'iso_3166_1': 'AF',
-        'english_name': 'Afghanistan',
-        'native_name': 'Afghanistan'
-    }
+        'iso_639_1': "ba",
+        'english_name': "Bashkir",
+        'name': ""
+    },
+
 ]
+
+languages_schema = schemas.SpokenLanguagesList(data=languages)
 
 countries = [
     {
@@ -649,3 +652,5 @@ countries = [
         'native_name': 'Zimbabwe'
     }
 ]
+
+countries_schema = schemas.CountriesList(data=countries)

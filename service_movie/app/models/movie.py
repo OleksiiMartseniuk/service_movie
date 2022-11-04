@@ -99,3 +99,21 @@ movie = sqlalchemy.Table(
     # production_countries m2m
     # genres m2m
 )
+
+
+# Таблица последняя серия в эфире
+last_episode_to_air = sqlalchemy.Table(
+    "last_episode_to_air",
+    metadata,
+    sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
+    sqlalchemy.Column("id_air", sqlalchemy.Integer()),
+    sqlalchemy.Column("air_date", sqlalchemy.Date()),
+    sqlalchemy.Column("episode_number", sqlalchemy.Integer()),
+    sqlalchemy.Column("name", sqlalchemy.String(50)),
+    sqlalchemy.Column("overview", sqlalchemy.Text()),
+    sqlalchemy.Column("production_code", sqlalchemy.String(50)),
+    sqlalchemy.Column("season_number", sqlalchemy.Integer()),
+    sqlalchemy.Column("still_path", sqlalchemy.String(255)),
+    sqlalchemy.Column("vote_average", sqlalchemy.Float()),
+    sqlalchemy.Column("vote_count", sqlalchemy.Integer()),
+)

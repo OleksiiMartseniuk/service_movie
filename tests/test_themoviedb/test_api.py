@@ -114,3 +114,23 @@ async def test_get_popular_tv(mocker, client_api):
     )
     result = await client_api.get_popular_tv()
     assert result == config_data.popular_tv
+
+
+@pytest.mark.asyncio
+async def test_get_languages(mocker, client_api):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=config_data.languages
+    )
+    result = await client_api.get_languages()
+    assert result == config_data.languages
+
+
+@pytest.mark.asyncio
+async def test_get_countries(mocker, client_api):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=config_data.countries
+    )
+    result = await client_api.get_languages()
+    assert result == config_data.countries

@@ -114,3 +114,15 @@ class TheMovieDatabaseApi:
         url = self.url + '/tv/popular'
         params = await self._set_params(page=page)
         return await self.get(url=url, params=params)
+
+    async def get_languages(self) -> list[dict] | None:
+        """Получите список языков"""
+        url = self.url + '/configuration/languages'
+        params = {'api_key': self.api_key}
+        return await self.get(url=url, params=params)
+
+    async def get_countries(self) -> list[dict] | None:
+        """Получить список стран"""
+        url = self.url + '/configuration/countries'
+        params = {'api_key': self.api_key}
+        return await self.get(url=url, params=params)

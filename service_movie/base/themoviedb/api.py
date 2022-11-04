@@ -118,11 +118,11 @@ class TheMovieDatabaseApi:
     async def get_languages(self) -> list[dict] | None:
         """Получите список языков"""
         url = self.url + '/configuration/languages'
-        params = {'api_key': self.api_key}
+        params = await self._set_params()
         return await self.get(url=url, params=params)
 
     async def get_countries(self) -> list[dict] | None:
         """Получить список стран"""
         url = self.url + '/configuration/countries'
-        params = {'api_key': self.api_key}
+        params = await self._set_params()
         return await self.get(url=url, params=params)

@@ -187,3 +187,31 @@ async def test_get_data_not_count(action, mocker, client_movie):
 
     assert result is None
     mock_get_link_method.assert_not_called()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'data, result',
+    [
+        (config_data.languages, config_data.languages_schema),
+        (None, None)
+    ]
+)
+async def test_get_languages(data, result, mocker, client_movie):
+    mocker.patch(config_data.mock_path_get, return_value=data)
+    result_data = await client_movie.get_languages()
+    assert result_data == result
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'data, result',
+    [
+        (config_data.countries, config_data.countries_schema),
+        (None, None)
+    ]
+)
+async def test_get_countries(data, result, mocker, client_movie):
+    mocker.patch(config_data.mock_path_get, return_value=data)
+    result_data = await client_movie.get_countries()
+    assert result_data == result

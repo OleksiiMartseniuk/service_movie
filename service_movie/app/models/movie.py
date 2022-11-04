@@ -144,3 +144,14 @@ seasons = sqlalchemy.Table(
     sqlalchemy.Column("poster_path", sqlalchemy.String(255)),
     sqlalchemy.Column("season_number", sqlalchemy.Integer()),
 )
+
+
+# Таблица разговорные языки
+spoken_languages = sqlalchemy.Table(
+    "spoken_languages",
+    metadata,
+    sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
+    sqlalchemy.Column("english_name", sqlalchemy.String(30)),
+    sqlalchemy.Column("iso_639_1", sqlalchemy.String(20)),
+    sqlalchemy.Column("name", sqlalchemy.String(30)),
+)

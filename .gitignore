@@ -5,3 +5,4 @@ media/*
 !.gitignore
 __pycache__
 .vscode
+docker_dev

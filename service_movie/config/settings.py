@@ -1,4 +1,14 @@
 import os
 
 
+POSTGRES_USER = os.getenv('POSTGRES_USER')
+POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
+POSTGRES_DB = os.getenv('POSTGRES_DB')
+HOST_DB = os.getenv('HOST_DB')
+PORT_DB = os.getenv('PORT_DB')
+
+SQLALCHEMY_DATABASE_URL = f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}'\
+    f'@{HOST_DB}:{PORT_DB}/{POSTGRES_DB}'
+
+
 API_KEY_THE_MOVIE_DB = os.getenv('API_KEY_THE_MOVIE_DB')

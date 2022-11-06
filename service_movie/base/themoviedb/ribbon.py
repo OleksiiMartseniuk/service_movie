@@ -101,9 +101,7 @@ class MovieApi:
 
         return get_schemas(data, schema)
 
-    async def get_genres(
-        self, tv: bool = False
-    ) -> list[schemas.Genre] | None:
+    async def get_genres(self, tv: bool = False) -> schemas.Genres | None:
         """Получения жанров"""
         data = await self.client.get_genres(tv=tv)
 

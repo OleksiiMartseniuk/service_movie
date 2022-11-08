@@ -76,7 +76,7 @@ class TheMovieDatabaseApi:
         self, page: int = 1, region: str = None
     ) -> dict | None:
         """Получите фильмы с самым высоким рейтингом"""
-        url = self.url + '/movie/top_rated'
+        url = f'{self.url}/movie/top_rated'
         params = await self._set_params(page=page, region=region)
         return await self.get(url=url, params=params)
 
@@ -87,7 +87,7 @@ class TheMovieDatabaseApi:
         Получите список текущих популярных фильмов.
         Этот список обновляется ежедневно.
         """
-        url = self.url + '/movie/popular'
+        url = f'{self.url}/movie/popular'
         params = await self._set_params(page=page, region=region)
         return await self.get(url=url, params=params)
 
@@ -95,13 +95,13 @@ class TheMovieDatabaseApi:
         self, page: int = 1, region: str = None
     ) -> dict | None:
         """Получить список предстоящих фильмов в кинотеатрах."""
-        url = self.url + '/movie/upcoming'
+        url = f'{self.url}/movie/upcoming'
         params = await self._set_params(page=page, region=region)
         return await self.get(url=url, params=params)
 
     async def get_top_rating_tv(self, page: int = 1, **kwargs):
         """Получите список телешоу с самым высоким рейтингом"""
-        url = self.url + '/tv/top_rated'
+        url = f'{self.url}/tv/top_rated'
         params = await self._set_params(page=page)
         return await self.get(url=url, params=params)
 
@@ -110,19 +110,19 @@ class TheMovieDatabaseApi:
         Получите список текущих популярных телешоу.
         Этот список обновляется ежедневно.
         """
-        url = self.url + '/tv/popular'
+        url = f'{self.url}/tv/popular'
         params = await self._set_params(page=page)
         return await self.get(url=url, params=params)
 
     async def get_languages(self) -> list[dict] | None:
         """Получите список языков"""
-        url = self.url + '/configuration/languages'
+        url = f'{self.url}/configuration/languages'
         params = await self._set_params()
         return await self.get(url=url, params=params)
 
     async def get_countries(self) -> list[dict] | None:
         """Получить список стран"""
-        url = self.url + '/configuration/countries'
+        url = f'{self.url}/configuration/countries'
         params = await self._set_params()
         return await self.get(url=url, params=params)
 
@@ -135,7 +135,7 @@ class TheMovieDatabaseApi:
         ----------
         item : str
             [movie] Выбрать список фильмов
-            [tv] Выбрать список телешоу
+            [tv] Выбрать список телешоу/фильмов
         id : int
             ID телешоу/фильмов
         page : int

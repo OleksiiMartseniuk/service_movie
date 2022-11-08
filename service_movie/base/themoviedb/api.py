@@ -30,7 +30,7 @@ class TheMovieDatabaseApi:
                     return response.json()
                 else:
                     logger.error(f'status_code [{response.status_code}] '
-                                    f'error_message [{response.json()}]')
+                                 f'error_message [{response.json()}]')
                     return None
             except httpx.RequestError as exc:
                 logger.error(f'{exc.__class__}-{str(exc)}')
@@ -123,5 +123,57 @@ class TheMovieDatabaseApi:
     async def get_countries(self) -> list[dict] | None:
         """Получить список стран"""
         url = self.url + '/configuration/countries'
+        params = await self._set_params()
+        return await self.get(url=url, params=params)
+
+    async def get_recommendations(
+        self, item: str, id: int, page: int = 1
+    ) -> dict | None:
+        """Получить список рекомендуемых телешоу/фильмов для этого элемента
+
+        Parameters
+        ----------
+        item : str
+            [movie] Выбрать список фильмов
+            [tv] Выбрать список телешоу
+        id : int
+            ID телешоу/фильмов
+        page : int
+            Номер страницы
+        """
+        item_list = ['movie', 'tv']
+
+        if item not in item_list:
+            logger.error(f'Неверный item[{item}]')
+            return None
+
+        url = f'{self.url}/{item}/{id}/recommendations'
+        params = await self._set_params(page=page)
+        return await self.get(url=url, params=params)
+
+    async def get_trending(self, media_type: str, time_window: str) -> dict:
+        """Получайте ежедневные или еженедельные трендовые товары
+
+        Parameters
+        ----------
+        media_type : str
+            [movie] Показать популярные фильмы в результатах
+            [tv] Показать популярные телешоу в результатах
+        time_window : str
+            [day] Просмотрите список трендов дня
+            [week] Посмотреть список трендов на неделю
+        """
+        media_type_list = ['movie', 'tv']
+        time_window_list = ['day', 'week']
+
+        if media_type not in media_type_list:
+            logger.error(f'Неверный media_type[{media_type}]')
+            return None
+
+        if time_window not in time_window_list:
+            logger.error(f'Неверный time_window[{time_window}]')
+            return None
+
+        url = f'{self.url}/trending/{media_type}/{time_window}'
         params = await self._set_params()
         return await self.get(url=url, params=params)

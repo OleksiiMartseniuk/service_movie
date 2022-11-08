@@ -134,3 +134,67 @@ async def test_get_countries(mocker, client_api):
     )
     result = await client_api.get_languages()
     assert result == config_data.countries
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'item, id, data',
+    [
+        ('movie', 1, config_data.popular_movie),
+        ('tv', 1, config_data.popular_tv)
+    ]
+)
+async def test_get_recommendations(item, id, data, mocker, client_api):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=data
+    )
+
+    result = await client_api.get_recommendations(item, id)
+    assert result == data
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('item', ['test', 'one', 'two'])
+async def test_get_recommendations_error_item(item, mocker, client_api):
+    mock_get = mocker.patch(config_data.mock_path_get)
+    result = await client_api.get_recommendations(item, 1)
+    assert result is None
+    mock_get.assert_not_called()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'media_type, time_window, data',
+    [
+        ('movie', 'day', config_data.popular_movie),
+        ('movie', 'week', config_data.popular_movie),
+        ('tv', 'day', config_data.popular_tv),
+        ('tv', 'week', config_data.popular_tv),
+    ]
+)
+async def test_get_trending(media_type, time_window, data, mocker, client_api):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=data
+    )
+
+    result = await client_api.get_trending(media_type, time_window)
+    assert result == data
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'media_type, time_window',
+    [
+        ('day', 'movie'),
+        ('movie', 'test')
+    ]
+)
+async def test_get_trending_error_params(
+    media_type, time_window, mocker, client_api
+):
+    mock_get = mocker.patch(config_data.mock_path_get)
+    result = await client_api.get_trending(media_type, time_window)
+    assert result is None
+    mock_get.assert_not_called()

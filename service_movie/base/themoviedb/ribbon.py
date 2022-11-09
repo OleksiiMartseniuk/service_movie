@@ -57,6 +57,15 @@ class MovieApi:
                 return None
         return func
 
+    def __get_schema_base(
+        self, item: str
+    ) -> schemas.BaseMovieResult | schemas.BaseTVResult:
+        """Получаем основною схему tv/movie"""
+        if item == 'movie':
+            return schemas.BaseMovieResult
+        elif item == 'tv':
+            return schemas.BaseTVResult
+
     async def __get_count_page(
         self, item: ActionEnum, region: str = None
     ) -> int | None:

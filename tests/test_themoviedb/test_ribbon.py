@@ -228,3 +228,75 @@ async def test_get_countries(data, result, mocker, client_movie):
 def test_get_schema_base(item, result, client_movie):
     schema = client_movie._MovieApi__get_schema_base(item)
     assert schema == result
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'item, id, data, result',
+    [
+        ('movie', 1, config_data.popular_movie, config_data.movie_base),
+        ('tv', 1, config_data.top_rating_tv, config_data.tv_schema_base),
+    ]
+)
+async def test_get_recommendations(
+    item, id, data, result, mocker, client_movie
+):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=data
+    )
+    result_data = await client_movie.get_recommendations(item, id)
+    assert result_data == result
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('item, id', [('movie', 1), ('tv', 1)])
+async def test_get_recommendations_not_data(item, id, mocker, client_movie):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=None
+    )
+    result_data = await client_movie.get_recommendations(item, id)
+    assert result_data is None
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'media_type, time_window, data, result',
+    [
+        ('movie', 'day', config_data.popular_movie, config_data.movie_base),
+        ('movie', 'week', config_data.popular_movie, config_data.movie_base),
+        ('tv', 'day', config_data.top_rating_tv, config_data.tv_schema_base),
+        ('tv', 'week', config_data.top_rating_tv, config_data.tv_schema_base),
+    ]
+)
+async def test_get_trending(
+    media_type, time_window, data, result, mocker, client_movie
+):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=data
+    )
+    result_data = await client_movie.get_trending(media_type, time_window)
+    assert result_data == result
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    'media_type, time_window',
+    [
+        ('movie', 'day'),
+        ('movie', 'week'),
+        ('tv', 'day'),
+        ('tv', 'week'),
+    ]
+)
+async def test_get_trending_not_data(
+    media_type, time_window, mocker, client_movie
+):
+    mocker.patch(
+        config_data.mock_path_get,
+        return_value=None
+    )
+    result_data = await client_movie.get_trending(media_type, time_window)
+    assert result_data is None

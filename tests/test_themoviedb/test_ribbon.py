@@ -1,6 +1,7 @@
 import pytest
 
 from service_movie.base.themoviedb.ribbon import ActionEnum
+from service_movie.base.themoviedb import schemas
 
 from . import config_data
 
@@ -215,3 +216,15 @@ async def test_get_countries(data, result, mocker, client_movie):
     mocker.patch(config_data.mock_path_get, return_value=data)
     result_data = await client_movie.get_countries()
     assert result_data == result
+
+
+@pytest.mark.parametrize(
+    'item, result',
+    [
+        ('movie', schemas.BaseMovieResult),
+        ('tv', schemas.BaseTVResult),
+    ]
+)
+def test_get_schema_base(item, result, client_movie):
+    schema = client_movie._MovieApi__get_schema_base(item)
+    assert schema == result

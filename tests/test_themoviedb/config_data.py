@@ -429,6 +429,7 @@ popular_movie = {
     'total_results': 20176
 }
 
+movie_base = schemas.BaseMovieResult(**popular_movie)
 popular_movie_schema = schemas.PopularMovie(**popular_movie)
 popular_movie_list_schema = schemas.PopularMovieList(
     data=[popular_movie for _ in range(500)]
@@ -550,6 +551,7 @@ top_rating_tv = {
     'total_results': 2648
 }
 
+tv_schema_base = schemas.BaseTVResult(**top_rating_tv)
 top_rating_tv_schema = schemas.TopRatedTV(**top_rating_tv)
 top_rating_tv_list_schema = schemas.TopRatedTVList(
     data=[top_rating_tv for _ in range(top_rating_tv['total_pages'])]

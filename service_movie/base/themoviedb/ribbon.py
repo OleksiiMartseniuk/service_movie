@@ -158,3 +158,33 @@ class MovieApi:
             tasks.append(task)
         data_list = await asyncio.gather(*tasks)
         return get_schemas({'data': data_list},  item.schema)
+
+    async def get_recommendations(
+        self, item: str, id: int, page: int = 1
+    ) -> schemas.BaseMovieResult | schemas.BaseTVResult | None:
+        """Получить список рекомендуемых телешоу/фильмов для этого элемента"""
+        data = await self.client.get_recommendations(item, id, page)
+
+        if not data:
+            logger.error('Нет данных get_recommendations'
+                         f'(item-{item}id-{id}, page-{page})')
+            return None
+
+        schema = self.__get_schema_base(item=item)
+
+        return get_schemas(data, schema)
+
+    async def get_trending(
+        self, media_type: str, time_window: str
+    ) -> schemas.BaseMovieResult | schemas.BaseTVResult | None:
+        """Получайте ежедневные или еженедельные трендовые товары"""
+        data = await self.client.get_trending(media_type, time_window)
+
+        if not data:
+            logger.error('Нет данных get_trending'
+                         f'(media_type-{media_type}time_window-{time_window}')
+            return None
+
+        schema = self.__get_schema_base(item=media_type)
+
+        return get_schemas(data, schema)
